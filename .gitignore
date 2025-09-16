@@ -1,0 +1,15 @@
+# Python virtual environment directory
+.venv/
+
+# Environment variables file containing sensitive information
+.env
+
+# Cache files created by Python
+__pycache__/
+
+
+# IDE-specific files (e.g., for VS Code)
+.vscode/
+myenv/
+
+myenv
