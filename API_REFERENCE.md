@@ -6,12 +6,32 @@ The following documents the expected request and response formats for the curren
 - Content-Type: `multipart/form-data`
 - Body:
   - `file`: binary file (pdf, png, jpg, etc.)
+  - `title`: string (document title)
+  - `category`: string (e.g., "policy", "safety", "procurement")
+  - `description`: string
+  - `department`: string (owning department)
+  - `language`: string ISO code (e.g., `en`, `ml`)
+  - `priority`: string (e.g., `low`, `medium`, `high`, `urgent`)
+  - `access_scope`: enum(`private`, `department`, `shared`)
+  - `shared_departments[]`: string[] (required if `access_scope` == `shared`)
 - 201 Created:
 ```json
 {
   "document_id": "abc123",
   "filename": "Sample.pdf",
   "size_bytes": 123456,
+  "metadata": {
+    "title": "Q1 Safety Update",
+    "category": "safety",
+    "description": "Monthly summary of incidents and mitigations",
+    "department": "Operations",
+    "language": "en",
+    "priority": "high",
+    "access": {
+      "scope": "shared",
+      "shared_departments": ["Operations", "Compliance"]
+    }
+  },
   "status": "uploaded"
 }
 ```
